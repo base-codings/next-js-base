@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { memo, useEffect } from 'react';
 
 import useStoreGlobal, { setStoreGlobal } from '~/store/useStoreGlobal';
-import { cn } from '~/utils/base';
+import { cn } from '~/helper/general';
 
 interface ModalIF {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '~/utils/base';
+import { cn } from '~/helper/general';
 import styles from './styles.module.scss';
 
 //gen interface container

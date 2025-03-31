@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useMemo } from 'react';
 import toast, { Toast as ToastHot } from 'react-hot-toast';
 import { ToastIF, ToastType } from '~/@types/toast';
-import { cn } from '~/utils/base';
+import { cn } from '~/helper/general';
 import CloseIcon from '../icons/CloseIcon';
 import CheckIcon from '../icons/CheckIcon';
 import Typography from '@mui/material/Typography';

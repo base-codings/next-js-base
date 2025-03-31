@@ -1,10 +1,10 @@
 export const uiConfig = {
-  title: 'Lotus Dex powered by Mantra',
-  description: 'Bound in Chaos, Blooming in Serenity.',
-  tags: ['Lotus Dex', 'Mantra'],
+  title: '',
+  description: '',
+  tags: ['', ''],
   socials: {
-    twitter: 'https://x.com/LotusDex',
+    twitter: '',
     telegram: '',
-    discord: 'https://discord.gg/lotusdex',
+    discord: '',
   },
 };

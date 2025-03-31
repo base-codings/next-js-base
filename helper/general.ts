@@ -1,11 +1,6 @@
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-// remove px from string : 75px ;-;
-export function handleWidthCss(value: string) {
-  return +value.slice(0, -2);
-}
-
 // generate a unique Key
 export const generateKey = (pre = '') => {
   return `${pre}_${new Date().getTime()}`;
