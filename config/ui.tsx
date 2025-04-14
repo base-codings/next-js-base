@@ -1,7 +1,7 @@
 export const uiConfig = {
-  title: '',
+  title: 'Shipper Đây',
   description: '',
-  tags: ['', ''],
+  tags: ['shipper', 'giakiem'],
   socials: {
     twitter: '',
     telegram: '',

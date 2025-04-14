@@ -2,10 +2,12 @@ import { create } from 'zustand';
 
 type StoreGlobalType = {
   zIndexModal: number;
+  isStorePage: boolean;
 };
 
 const store = () => ({
   zIndexModal: 0,
+  isStorePage: false,
 });
 
 const useStoreGlobal = create<StoreGlobalType>(store);
