@@ -65,41 +65,7 @@ declare module '@mui/material/styles/createPalette' {
   }
 }
 
-export interface TypographyCustomVariants {
-  display1: React.CSSProperties;
-  display2: React.CSSProperties;
-  display3: React.CSSProperties;
-  subheader1: React.CSSProperties;
-  subheader2: React.CSSProperties;
-  description: React.CSSProperties;
-  buttonL: React.CSSProperties;
-  buttonM: React.CSSProperties;
-  buttonS: React.CSSProperties;
-  helperText: React.CSSProperties;
-  tooltip: React.CSSProperties;
-  main10: React.CSSProperties;
-  main18: React.CSSProperties;
-  main20: React.CSSProperties;
-  main21: React.CSSProperties;
-  main24: React.CSSProperties;
-  secondary21: React.CSSProperties;
-  main16: React.CSSProperties;
-  secondary16: React.CSSProperties;
-  main14: React.CSSProperties;
-  secondary14: React.CSSProperties;
-  main12: React.CSSProperties;
-  secondary12: React.CSSProperties;
-  secondary10: React.CSSProperties;
-  body3: React.CSSProperties;
-  body4: React.CSSProperties;
-  caption2: React.CSSProperties;
-  overline1: React.CSSProperties;
-  overline2: React.CSSProperties;
-  overline3: React.CSSProperties;
-  button1: React.CSSProperties;
-  button2: React.CSSProperties;
-  button3: React.CSSProperties;
-}
+export interface TypographyCustomVariants {}
 
 declare module '@mui/material/styles' {
   interface TypographyVariants extends TypographyCustomVariants {}
@@ -116,18 +82,6 @@ declare module '@mui/material/styles' {
 // Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    display1: true;
-    display2: true;
-    display3: true;
-    panel1: true;
-    subheader1: true;
-    subheader2: true;
-    description: true;
-    buttonM: true;
-    buttonS: true;
-    buttonL: true;
-    helperText: true;
-    tooltip: true;
     main10: true;
     main18: true;
     main20: true;
@@ -135,28 +89,24 @@ declare module '@mui/material/Typography' {
     main22: true;
     main24: true;
     main32: true;
-    secondary21: true;
-    main16: true;
-    secondary16: true;
-    main14: true;
     secondary14: true;
-    main12: true;
-    secondary12: true;
-    secondary10: true;
-    subtitle1: false;
-    subtitle2: false;
-    button: false;
-    overline: false;
+    secondary16: true;
+    secondary28: true;
+    h1: true;
+    h2: true;
+    h3: true;
+    h4: true;
+    h5: true;
+    h6: true;
+    subtitle1: true;
+    subtitle2: true;
+    body1: true;
+    body2: true;
     body3: true;
     body4: true;
-    caption2: true;
-    overline1: true;
-    overline2: true;
-    overline3: true;
-    button1: true;
-    button2: true;
-    button3: true;
-    boxOutlined: true;
+    button: true;
+    caption: true;
+    overline: true;
   }
 }
 
@@ -166,10 +116,6 @@ declare module '@mui/material/Button' {
     primary: true;
     secondary: true;
     tertiary: true;
-    // surface: true;
-    // primary: true;
-    // secondary: true;
-    // ghost: true;
   }
   interface ButtonPropsSizeOverrides {
     small: true;
@@ -295,326 +241,177 @@ export const getDesignTokens = (mode: 'light' | 'dark'): ThemeOptions => {
     spacing: 4,
     typography: {
       fontFamily: FONT,
-      subtitle1: undefined,
-      subtitle2: undefined,
-      button: undefined,
-      overline: undefined,
-      display1: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0.4px',
-        lineHeight: pxToRem(112),
-        fontSize: pxToRem(96),
-      },
-      display2: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0.4px',
-        lineHeight: pxToRem(96),
-        fontSize: pxToRem(80),
-      },
-      display3: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0.4px',
-        lineHeight: pxToRem(86),
-        fontSize: pxToRem(72),
-      },
       h1: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(76),
-        fontSize: pxToRem(64),
+        lineHeight: 1.25,
+        fontSize: pxToRem(40),
       },
       h2: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(56),
-        fontSize: pxToRem(48),
+        lineHeight: 1.25,
+        fontSize: pxToRem(32),
       },
       h3: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(48),
-        fontSize: pxToRem(40),
+        lineHeight: 1.25,
+        fontSize: pxToRem(28),
       },
       h4: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(44),
-        fontSize: pxToRem(36),
+        lineHeight: 1.25,
+        fontSize: pxToRem(24),
       },
       h5: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(40),
-        fontSize: pxToRem(32),
+        lineHeight: 1.25,
+        fontSize: pxToRem(20),
       },
       h6: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(32),
-        fontSize: pxToRem(24),
+        lineHeight: 1.25,
+        fontSize: pxToRem(16),
+      },
+      subtitle1: {
+        fontFamily: FONT,
+        fontWeight: 400,
+        letterSpacing: '0.4px',
+        lineHeight: 1.25,
+        fontSize: pxToRem(16),
+      },
+      subtitle2: {
+        fontFamily: FONT,
+        fontWeight: 400,
+        letterSpacing: '0.4px',
+        lineHeight: 1.25,
+        fontSize: pxToRem(14),
       },
       body1: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(28),
+        lineHeight: 1.25,
         fontSize: pxToRem(20),
       },
       body2: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(24),
+        lineHeight: 1.25,
         fontSize: pxToRem(16),
       },
       body3: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0.4px',
-        lineHeight: pxToRem(20),
-        height: pxToRem(20),
+        lineHeight: 1.25,
         fontSize: pxToRem(14),
       },
       body4: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '2%',
-        lineHeight: pxToRem(18),
+        lineHeight: 1.25,
         fontSize: pxToRem(12),
       },
-      panel1: {
+      button: {
         fontFamily: FONT,
         fontWeight: 400,
-        letterSpacing: pxToRem(0.15),
-        lineHeight: '160%',
-        color: theme.palette.text.reversed,
-        fontSize: pxToRem(18),
-      },
-      subheader1: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.24),
-        lineHeight: pxToRem(12),
-        fontSize: pxToRem(12),
-      },
-      subheader2: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.1),
-        lineHeight: pxToRem(16),
-        fontSize: pxToRem(12),
-      },
-      description: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(-0.14),
-        lineHeight: '143%',
+        letterSpacing: '0%',
+        lineHeight: 1.25,
         fontSize: pxToRem(14),
       },
-      // mean caption01
       caption: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0%',
-        lineHeight: pxToRem(20),
-        fontSize: pxToRem(14),
-      },
-      caption2: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0%',
-        lineHeight: pxToRem(18),
+        lineHeight: 1.25,
         fontSize: pxToRem(12),
       },
-      overline1: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0.32px',
-        lineHeight: pxToRem(16),
-        fontSize: pxToRem(16),
-      },
-      overline2: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '2%',
-        lineHeight: pxToRem(20),
-        fontSize: pxToRem(14),
-      },
-      overline3: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '2%',
-        lineHeight: pxToRem(18),
-        fontSize: pxToRem(12),
-      },
-      button1: {
+      overline: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: '0%',
-        lineHeight: pxToRem(14),
-        fontSize: pxToRem(14),
-      },
-      button2: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0%',
-        lineHeight: pxToRem(12),
-        fontSize: pxToRem(12),
-      },
-      button3: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: '0%',
-        lineHeight: pxToRem(10),
+        lineHeight: 1.25,
         fontSize: pxToRem(10),
-      },
-      buttonL: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        lineHeight: pxToRem(14),
-        fontSize: pxToRem(14),
-        letterSpacing: '0.4px',
-      },
-      buttonM: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.46),
-        lineHeight: pxToRem(12),
-        fontSize: pxToRem(12),
-      },
-      buttonS: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.12),
-        lineHeight: pxToRem(10),
-        textTransform: 'uppercase',
-        fontSize: pxToRem(10),
-      },
-      helperText: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.28),
-        lineHeight: pxToRem(14),
-        fontSize: pxToRem(14),
-      },
-      tooltip: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(16),
-        fontSize: pxToRem(12),
       },
       main10: {
         fontFamily: FONT,
         fontWeight: 500,
         letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(10),
+        lineHeight: 1.25,
         fontSize: pxToRem(10),
       },
       main18: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(26),
+        lineHeight: 1.25,
         fontSize: pxToRem(18),
       },
       main20: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(28),
+        lineHeight: 1.25,
         fontSize: pxToRem(20),
       },
       main22: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(32),
+        lineHeight: 1.25,
         fontSize: pxToRem(22),
       },
       main21: {
         fontFamily: FONT,
         fontWeight: 800,
-        lineHeight: '133.4%',
+        lineHeight: 1.25,
         fontSize: pxToRem(21),
       },
       main24: {
         fontFamily: FONT,
         fontWeight: 400,
-        lineHeight: pxToRem(32),
+        lineHeight: 1.25,
         fontSize: pxToRem(24),
       },
       main32: {
         fontFamily: FONT,
         fontWeight: 400,
-        lineHeight: pxToRem(40),
+        lineHeight: 1.25,
         fontSize: pxToRem(32),
-      },
-      secondary21: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        lineHeight: '133.4%',
-        fontSize: pxToRem(21),
-      },
-      main16: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(24),
-        fontSize: pxToRem(16),
-      },
-      secondary16: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(24),
-        fontSize: pxToRem(16),
-      },
-      main14: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(20),
-        fontSize: pxToRem(14),
       },
       secondary14: {
         fontFamily: FONT,
         fontWeight: 400,
         letterSpacing: pxToRem(0.15),
-        lineHeight: pxToRem(20),
+        lineHeight: 1.25,
         fontSize: pxToRem(14),
       },
-      main12: {
+      secondary16: {
         fontFamily: FONT,
         fontWeight: 400,
-        letterSpacing: pxToRem(0.1),
-        lineHeight: pxToRem(16),
-        fontSize: pxToRem(12),
+        letterSpacing: pxToRem(0.15),
+        lineHeight: 1.25,
+        fontSize: pxToRem(16),
       },
-      secondary12: {
+      secondary28: {
         fontFamily: FONT,
         fontWeight: 400,
-        letterSpacing: pxToRem(0.24),
-        lineHeight: pxToRem(10),
-        fontSize: pxToRem(10),
-        verticalAlign: 'sub',
-      },
-      secondary10: {
-        fontFamily: FONT,
-        fontWeight: 400,
-        letterSpacing: pxToRem(0.24),
-        lineHeight: pxToRem(10),
-        fontSize: pxToRem(8),
-        verticalAlign: 'sub',
+        letterSpacing: pxToRem(0.15),
+        lineHeight: 1.25,
+        fontSize: pxToRem(28),
       },
     },
   } as ThemeOptions;
@@ -635,7 +432,7 @@ export function getThemedComponents(theme: Theme) {
             zIndex: 1,
           },
           sizeLarge: {
-            ...theme.typography.buttonL,
+            ...theme.typography.button,
             padding: '10px 16px',
             maxHeight: '48px',
             borderRadius: '24px',
@@ -646,7 +443,7 @@ export function getThemedComponents(theme: Theme) {
             },
           },
           sizeMedium: {
-            ...theme.typography.buttonM,
+            ...theme.typography.button,
             padding: '8px 12px',
             maxHeight: '32px',
             borderRadius: '1000px',
@@ -655,7 +452,7 @@ export function getThemedComponents(theme: Theme) {
             },
           },
           sizeSmall: {
-            ...theme.typography.buttonS,
+            ...theme.typography.button,
             padding: '8.5px 16px',
             maxHeight: '24px',
             borderRadius: '1000px',
@@ -670,7 +467,7 @@ export function getThemedComponents(theme: Theme) {
           {
             props: { size: 'XLarge' },
             style: {
-              ...theme.typography.buttonL,
+              ...theme.typography.button,
               padding: '14px 24px',
               maxHeight: '48px',
               borderRadius: '8px',
