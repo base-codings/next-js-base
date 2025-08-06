@@ -1,0 +1,36 @@
+name: Continuous integration
+
+on:
+  push:
+    branches: [preview, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Checkout and set environment variable
+        run: |
+          SHORT_SHA_COMMIT=$(git rev-parse --short HEAD)
+          # Gitops repository
+          echo REPO_MANIFEST_NAME=unleash-k8s-gitops >> $GITHUB_ENV
+          echo REPO_MANIFEST_URL=github.com/unleash-protocol/unleash-k8s-gitops.git >> $GITHUB_ENV
+      - name: Build the Docker image and push it to the registry
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        run: |
+          ls -al /bin
+          chmod 777 -R ./ci
+          ./ci/docker_build.sh
+      # - name: Update manifest
+      #   env:
+      #     PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+      #     REPO_MANIFEST_BRANCH: main
+      #   run: |
+      #     ./ci/updateManifest.sh
