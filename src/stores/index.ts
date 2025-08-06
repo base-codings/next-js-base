@@ -1,2 +1,2 @@
-import useLandingStore from './useLandingStore'
-export { useLandingStore }
+import useGlobalStore from './useGlobalStore'
+export { useGlobalStore }

@@ -4,8 +4,6 @@ const COOKIES = {
   TOKEN: 'token',
   REFRESH_TOKEN: 'refreshToken',
   ADDRESS: 'address',
-  PRIVY_TOKEN: 'privy-token',
-  PRIVY_SESSION: 'privy-session',
 }
 
 const setCookie = (key: string, value: string, options?: Cookies.CookieAttributes) => {

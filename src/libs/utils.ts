@@ -20,88 +20,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function toSafeBigInt(value: string | number): bigint {
-  if (typeof value === 'number' || (typeof value === 'string' && value.includes('e'))) {
-    const bigDecimalValue = new bigDecimal(value.toString())
-    value = bigDecimalValue.getValue()
-  }
-  return BigInt(value)
-}
-
 export function toBig(value: string | number | bigint): Big {
   return new Big(typeof value === 'bigint' ? value.toString() : value)
-}
-
-export const formatLargeNumber = (
-  num: bigint | number | string,
-  options?: {
-    symbol?: string
-    decimals?: number
-    useBigNumberFormat?: boolean
-  },
-): string => {
-  const { symbol = '', decimals = 0, useBigNumberFormat = true } = options ?? {}
-
-  let bigIntValue: bigint
-  if (typeof num === 'bigint') {
-    bigIntValue = num
-  } else {
-    bigIntValue = toSafeBigInt(num)
-  }
-
-  const BD = bigDecimal
-  const raw = new BD(bigIntValue.toString())
-
-  // Thresholds (in millions)
-  const THRESHOLDS = [
-    { value: new BD('1e24'), suffix: 'E' }, // ≥ 1,000,000,000,000,000,000,000,000
-    { value: new BD('1e21'), suffix: 'T' }, // ≥ 1,000,000,000,000,000,000,000
-    { value: new BD('1e18'), suffix: 'P' }, // ≥ 1,000,000,000,000,000,000
-    { value: new BD('1e15'), suffix: 'B' }, // ≥ 1,000,000,000,000,000
-    { value: new BD('1e12'), suffix: 'M' }, // ≥ 1,000,000,000,000
-    { value: new BD('1e9'), suffix: 'K' }, // ≥ 1,000,000,000
-  ]
-
-  if (useBigNumberFormat) {
-    for (const { value, suffix } of THRESHOLDS) {
-      if (raw.compareTo(value) >= 0) {
-        if (suffix === 'K') {
-          // For K, use the full number (up to 9 digits)
-          let formatted = raw.getValue().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-          // Ensure max 9 digits
-          const digits = formatted.replace(/,/g, '')
-          if (digits.length > 9) {
-            formatted = digits.slice(0, 9).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-          }
-          return `${symbol}${formatted}${suffix}`
-        }
-        // For M, B, P, T, E, use million-group division
-        const millionGroup = raw.divide(new BD('1e6'), 0, BD.RoundingModes.DOWN)
-        let formatted = millionGroup.getValue().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        // Ensure max 9 digits
-        const digits = formatted.replace(/,/g, '')
-        if (digits.length > 9) {
-          formatted = digits.slice(0, 9).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        }
-        return `${symbol}${formatted}${suffix}`
-      }
-    }
-  }
-
-  // Default: format with commas and decimals if needed
-  let formatted = raw.round(decimals, BD.RoundingModes.DOWN).getValue()
-  if (decimals > 0 && formatted.includes('.')) {
-    // Remove trailing zeros in decimal part
-    formatted = formatted.replace(/(\.\d*?[1-9])0+$/g, '$1').replace(/\.0+$/, '')
-  }
-  // Ensure max 9 digits
-  const digits = formatted.replace(/,/g, '')
-  if (digits.length > 9) {
-    formatted = digits.slice(0, 9).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-  formatted = formatted.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-  return `${symbol}${formatted}`
 }
 
 const EXCEEDING_LIMIT_VALUE = 1.79769313 * Math.pow(10, 308)

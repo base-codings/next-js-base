@@ -4,7 +4,7 @@ import type * as React from 'react'
 
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { cn } from '@/libs'
-import { CheckIcon } from '@/assets'
+import { CheckIcon } from '@/assets/icons/check'
 
 function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (

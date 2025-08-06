@@ -4,7 +4,6 @@ import { motion, type MotionProps } from 'framer-motion'
 import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'
 import { RevealHover } from './reveal-hover'
-import { LoadingIcon } from '@/assets'
 import useIsMount from '@/hooks/useIsMount'
 
 const buttonVariants = cva(
@@ -109,7 +108,7 @@ const Button = React.memo(
           {asChild ? (
             children
           ) : (
-            <RevealHover revealClassName={revealClassName}>{loading ? <LoadingIcon /> : children}</RevealHover>
+            <RevealHover revealClassName={revealClassName}>{loading ? <span>Loading...</span> : children}</RevealHover>
           )}
         </Comp>
       )
