@@ -1,5 +1,5 @@
 import { NextConfig } from 'next'
-import createNextIntlPlugin from 'next-intl/plugin'
+import linguiConfig from './lingui.config'
 
 const nextConfig: NextConfig = {
   images: {
@@ -31,7 +31,23 @@ const nextConfig: NextConfig = {
   eslint: {
     dirs: ['src'],
   },
+  experimental: {
+    swcPlugins: [['@lingui/swc-plugin', {}]],
+  },
+  i18n: {
+    locales: linguiConfig.locales,
+    defaultLocale: linguiConfig.sourceLocale,
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.po$/,
+      use: {
+        loader: '@lingui/loader', // https://github.com/lingui/js-lingui/issues/1782
+      },
+    })
+
+    return config
+  },
 }
 
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
-export default withNextIntl(nextConfig)
+export default nextConfig

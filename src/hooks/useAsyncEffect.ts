@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { EffectCallback, DependencyList } from 'react'
 
 export type AsyncEffectCallback = EffectCallback | (() => Promise<ReturnType<EffectCallback>>)

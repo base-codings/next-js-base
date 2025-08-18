@@ -1,27 +1,45 @@
-import { routing } from '@/i18n/routing'
-import createMiddleware from 'next-intl/middleware'
-
+/*
+ * For more info see
+ * https://nextjs.org/docs/app/building-your-application/routing/internationalization
+ * */
 import { type NextRequest, NextResponse } from 'next/server'
 
-const intlMiddleware = createMiddleware(routing)
+import Negotiator from 'negotiator'
+import linguiConfig from '../lingui.config'
 
-export default function middleware(request: NextRequest) {
-  const token = request.cookies.get('token')?.value
+const { locales } = linguiConfig
+
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  if (pathname.includes('/profile')) {
-    if (!token) {
-      return NextResponse.redirect(new URL(`/`, request.url))
-    }
-  }
 
-  return intlMiddleware(request)
+  const pathnameHasLocale = locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
+
+  if (pathnameHasLocale) return
+
+  // Redirect if there is no locale
+  const locale = getRequestLocale(request.headers)
+  request.nextUrl.pathname = `/${locale}${pathname}`
+  // e.g. incoming request is /products
+  // The new URL is now /en/products
+  return NextResponse.redirect(request.nextUrl)
+}
+
+function getRequestLocale(requestHeaders: Headers): string {
+  const langHeader = requestHeaders.get('accept-language') || undefined
+  const languages = new Negotiator({
+    headers: { 'accept-language': langHeader },
+  }).languages(locales.slice())
+
+  const activeLocale = languages[0] || locales[0] || 'en'
+
+  return activeLocale
 }
 
 export const config = {
   matcher: [
-    '/',
-    '/(de|en)/:path*',
-    '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
+    // '/',
+    // '/(nl|en)/:path*',
+    // '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
     /*
      * Match all request paths except:
      * - _next/static (static files)
@@ -30,6 +48,6 @@ export const config = {
      * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
      * Feel free to modify this pattern to include more paths.
      */
-    // "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
