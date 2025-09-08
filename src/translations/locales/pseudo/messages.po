@@ -14,16 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 msgid "Chinese"
-msgstr ""
+msgstr "Çhïnësë"
 
 msgid "Dutch"
-msgstr ""
+msgstr "Ðütçh"
 
 msgid "English"
-msgstr ""
-
-msgid "Home"
-msgstr ""
+msgstr "Ëñglïsh"
 
 msgid "Pseudo"
-msgstr ""
+msgstr "Pšëüdö"

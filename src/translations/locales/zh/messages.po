@@ -14,16 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 msgid "Chinese"
-msgstr ""
+msgstr "中國人"
 
 msgid "Dutch"
-msgstr ""
+msgstr "荷蘭語"
 
 msgid "English"
-msgstr ""
-
-msgid "Home"
-msgstr ""
+msgstr "英語"
 
 msgid "Pseudo"
-msgstr ""
+msgstr "偽"

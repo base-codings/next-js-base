@@ -1,18 +1,15 @@
 'use client'
-import { Checkbox } from '@/components/common/checkbox'
-import { Trans } from '@lingui/react/macro'
+import { Button } from '@/components/common'
+import { changeLanguage } from '@/utils/helper'
 import { FC } from 'react'
 
-interface Props {}
-
-const HomePage: FC<Props> = () => {
+const HomePage: FC = () => {
   return (
-    <div className="w-full">
-      <section className="w-full pb-6 pl-4 lg:pl-8">
-        <Checkbox />
+    <div className="flex h-screen w-screen flex-col gap-2">
+      <section className="flex items-center gap-4 pt-8 pr-4 pl-4 lg:pl-8 xl:pr-18">
+        <Button onClick={() => changeLanguage('zh')}>Chinese</Button>
+        <Button onClick={() => changeLanguage('en')}>English</Button>
       </section>
-      <Trans>Home</Trans>
-      <section className="pt-8 pr-4 pl-4 lg:pl-8 xl:pr-18"></section>
     </div>
   )
 }

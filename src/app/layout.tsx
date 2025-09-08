@@ -8,7 +8,6 @@ import { ReactQueryProvider } from '@/libs/providers'
 import { LinguiProvider } from '@/libs/providers/LinguiProvider'
 import { allMessages } from '@/translations/appRouterI18n'
 import { cookies } from 'next/headers'
-import { initLingui } from '@/translations/initLingui'
 
 export async function generateStaticParams() {
   return linguiConfig.locales.map((lang) => ({ lang }))
@@ -26,8 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function LocaleLayout({ children }: { children: React.ReactNode }) {
   // Ensure that the incoming `locale` is valid
   const cookieStore = await cookies()
-  const locale = cookieStore.get('locale')?.value || 'en'
-  initLingui(locale)
+  const locale = cookieStore.get('NEXT_LINGUI_LOCALE')?.value || 'en'
 
   return (
     <html lang={locale}>

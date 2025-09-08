@@ -2,17 +2,14 @@
 
 import { i18n, Messages } from '@lingui/core'
 import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 
-export async function loadCatalog(locale: string) {
+export async function loadCatalog(locale: string): Promise<Messages> {
   const catalog = await import(`./locales/${locale}/messages.js`)
   return catalog.messages
 }
 
-export function useLinguiInit(messages: Messages) {
+export function useLinguiInit(locale: string, messages: Messages) {
   const isClient = typeof window !== 'undefined'
-  const pathname = usePathname()
-  const locale = pathname?.split('/')[1] ?? 'en'
 
   if (!isClient && locale !== i18n.locale) {
     // there is single instance of i18n on the server

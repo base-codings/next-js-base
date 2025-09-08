@@ -22,8 +22,5 @@ msgstr "Dutch"
 msgid "English"
 msgstr "English"
 
-msgid "Home"
-msgstr "Home"
-
 msgid "Pseudo"
 msgstr "Pseudo"

@@ -1,8 +1,8 @@
 'use client'
 
 import { I18nProvider } from '@lingui/react'
-import { type Messages, setupI18n } from '@lingui/core'
-import { useState } from 'react'
+import { type Messages } from '@lingui/core'
+import { useLinguiInit } from '@/translations/pagesRouterI18n'
 
 type Props = {
   children: React.ReactNode
@@ -11,11 +11,7 @@ type Props = {
 }
 
 export function LinguiProvider({ children, initialLocale, initialMessages }: Props) {
-  const [i18n] = useState(() => {
-    return setupI18n({
-      locale: initialLocale,
-      messages: { [initialLocale]: initialMessages },
-    })
-  })
-  return <I18nProvider i18n={i18n}>{children}</I18nProvider>
+  const i18n = useLinguiInit(initialLocale, initialMessages)
+  if (i18n) return <I18nProvider i18n={i18n}>{children}</I18nProvider>
+  return <></>
 }
