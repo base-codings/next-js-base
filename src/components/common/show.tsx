@@ -3,5 +3,5 @@ import React from 'react'
 import type { FCC } from '@/types'
 
 export const Show: FCC<{ when?: boolean }> = (props) => {
-  return <>{props.when ? <>{props.children}</> : null}</>
+    return <>{props.when ? <>{props.children}</> : null}</>
 }

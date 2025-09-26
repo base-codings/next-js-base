@@ -2,22 +2,22 @@ import { useState, useEffect } from 'react'
 import { getCountdownToUCT } from '@/libs'
 
 interface Props {
-  endTime: string
-  tz?: string
-  prefix?: string
-  format?: 'HH:mm' | 'HH:mm:ss'
+    endTime: string
+    tz?: string
+    prefix?: string
+    format?: 'HH:mm' | 'HH:mm:ss'
 }
 
 export const useCountdown = ({ endTime, tz = 'UTC', prefix = 'UCT', format = 'HH:mm' }: Props) => {
-  const [countdown, setCountdown] = useState(getCountdownToUCT(endTime, tz, format, prefix))
+    const [countdown, setCountdown] = useState(getCountdownToUCT(endTime, tz, format, prefix))
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountdown(getCountdownToUCT(endTime, tz, format, prefix))
-    }, 1000)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCountdown(getCountdownToUCT(endTime, tz, format, prefix))
+        }, 1000)
 
-    return () => clearInterval(interval)
-  }, [endTime, tz, format, prefix])
+        return () => clearInterval(interval)
+    }, [endTime, tz, format, prefix])
 
-  return countdown
+    return countdown
 }

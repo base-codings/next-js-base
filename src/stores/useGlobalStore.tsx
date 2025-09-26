@@ -8,5 +8,5 @@ const useGlobalStore = create<GlobalStore>(store)
 export default useGlobalStore
 
 export function setGlobalStore<T extends keyof GlobalStore>(x: Pick<GlobalStore, T>) {
-  useGlobalStore.setState(x)
+    useGlobalStore.setState(x)
 }
