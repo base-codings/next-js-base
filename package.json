@@ -11,7 +11,8 @@
         "prepare": "husky",
         "translations:extract": "lingui extract --clean",
         "translations:compile": "lingui compile",
-        "translations": "pnpm run translations:extract && pnpm run translations:compile"
+        "translations": "pnpm run translations:extract && pnpm run translations:compile",
+        "format": "prettier --write ."
     },
     "dependencies": {
         "@hookform/resolvers": "^5.0.1",
