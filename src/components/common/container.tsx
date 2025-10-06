@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { cn } from '@/libs'
+import { cn } from '@/utils'
 import { ComponentPropsWithoutRef, ReactElement } from 'react'
 
 type ValidElement<Props = any> =

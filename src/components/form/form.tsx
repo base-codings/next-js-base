@@ -3,7 +3,7 @@ import type { ControllerProps, FieldPath, FieldValues, SubmitHandler, UseFormRet
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 
 import type { FCC } from '@/types'
-import { cn } from '@/libs'
+import { cn } from '@/utils'
 
 export interface FormWrapperProps<T extends FieldValues> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -3,7 +3,7 @@ import type { Control, FieldPath, FieldPathValue, FieldValues } from 'react-hook
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
 import { Show } from '../common/show'
 import { Input, InputProps } from '../common'
-import { cn } from '@/libs'
+import { cn } from '@/utils'
 
 interface Props<T extends FieldValues = FieldValues> extends InputProps {
     control: Control<T>

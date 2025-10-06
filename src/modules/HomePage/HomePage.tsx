@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '@/components/common'
 import { changeLanguage } from '@/utils/helper'
+import { Trans } from '@lingui/react/macro'
 import { FC } from 'react'
 
 const HomePage: FC = () => {
@@ -10,6 +11,7 @@ const HomePage: FC = () => {
                 <Button onClick={() => changeLanguage('zh')}>Chinese</Button>
                 <Button onClick={() => changeLanguage('en')}>English</Button>
             </section>
+            <Trans>Dutch</Trans>
         </div>
     )
 }

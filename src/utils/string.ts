@@ -1,11 +1,10 @@
-export function shortAddress(address: string, numberOfInits = 4, numberOfLast = 4) {
-    if (address && address.length > numberOfInits && address.length - numberOfLast > 0) {
-        return `${address.slice(0, numberOfInits)}...${address.slice(address.length - numberOfLast)}`
-    }
-    return ''
-}
-
 export function convertCamelCaseToTitleCase(inputText: string) {
     const result = inputText.split(/(?=[A-Z])/).join(' ')
     return result.charAt(0).toUpperCase() + result.slice(1)
+}
+
+export function shortenString(str?: string, before = 4, after = 5) {
+    if (!str) return ''
+    if (str?.length <= before + after) return str
+    return `${str.substring(0, before)}...${str.substring(str.length - after)}`
 }

@@ -1,3 +1,1 @@
-module.exports = {
-    messages: JSON.parse('{"KIjvtr":["Ðüţçĥ"],"M55mLW":["Ƥšëüďö"],"h1IXFK":["Çĥïńëśë"],"lYGfRP":["Ëñĝĺïśĥ"]}'),
-}
+/*eslint-disable*/module.exports={messages:JSON.parse("{\"KIjvtr\":[\"Ďũţćĥ\"],\"M55mLW\":[\"Ƥšëüďö\"],\"h1IXFK\":[\"Ćĥĩńēśē\"],\"lYGfRP\":[\"Ëñĝĺïśĥ\"]}")};

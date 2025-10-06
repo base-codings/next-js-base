@@ -2,38 +2,55 @@
  * For more info see
  * https://nextjs.org/docs/app/building-your-application/routing/internationalization
  * */
-import { type NextRequest, NextResponse } from 'next/server'
+// import { type NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-import Negotiator from 'negotiator'
-import linguiConfig from '../lingui.config'
+// import Negotiator from 'negotiator'
+// import linguiConfig from '../lingui.config'
 
-const { locales } = linguiConfig
+// const { locales } = linguiConfig
 
-export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl
+// export function middleware(request: NextRequest) {
+export function middleware() {
+    // export function middleware() {
+    // const { pathname } = request.nextUrl
 
-    const pathnameHasLocale = locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
+    // const pathnameHasLocale = locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
 
-    if (pathnameHasLocale) return
+    // if (pathnameHasLocale) return
 
-    // Redirect if there is no locale
-    const locale = getRequestLocale(request.headers)
-    request.nextUrl.pathname = `/${locale}${pathname}`
-    // e.g. incoming request is /products
-    // The new URL is now /en/products
-    return NextResponse.redirect(request.nextUrl)
+    // // Redirect if there is no locale
+    // const locale = getRequestLocale(request.headers)
+    // request.nextUrl.pathname = `/${locale}${pathname}`
+    // // e.g. incoming request is /products
+    // // The new URL is now /en/products
+    // return NextResponse.redirect(request.nextUrl)
+    // const locale = req.cookies.get('NEXT_LOCALE')?.value || 'en'
+    // return NextResponse.rewrite(new URL(`/${locale}${req.nextUrl.pathname}`, req.url))
+    return NextResponse.next()
+
+    // const { pathname } = request.nextUrl
+    // const pathnameHasLocale = locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`)
+
+    // if (pathnameHasLocale) return
+
+    // const locale = 'en'
+    // request.nextUrl.pathname = `/${locale}${pathname}`
+    // // e.g. incoming request is /products
+    // // The new URL is now /en-US/products
+    // return NextResponse.redirect(request.nextUrl)
 }
 
-function getRequestLocale(requestHeaders: Headers): string {
-    const langHeader = requestHeaders.get('accept-language') || undefined
-    const languages = new Negotiator({
-        headers: { 'accept-language': langHeader },
-    }).languages(locales.slice())
+// function getRequestLocale(requestHeaders: Headers): string {
+//   const langHeader = requestHeaders.get('accept-language') || undefined
+//   const languages = new Negotiator({
+//     headers: { 'accept-language': langHeader },
+//   }).languages(locales.slice())
 
-    const activeLocale = languages[0] || locales[0] || 'en'
+//   const activeLocale = languages[0] || locales[0] || 'en'
 
-    return activeLocale
-}
+//   return activeLocale
+// }
 
 export const config = {
     matcher: [

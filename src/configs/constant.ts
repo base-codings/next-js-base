@@ -1,0 +1,1 @@
+export const LOCALE_KEY = 'NEXT_LINGUI_LOCALE'

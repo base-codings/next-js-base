@@ -3,11 +3,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import linguiConfig from '../../lingui.config'
 import { siteConfig } from '@/configs/site'
-import LayoutProvider from '@/libs/common/LayoutProvider'
-import { ReactQueryProvider } from '@/libs/providers'
-import { LinguiProvider } from '@/libs/providers/LinguiProvider'
-import { allMessages } from '@/translations/appRouterI18n'
-import { cookies } from 'next/headers'
+import AppProviders from './providers'
 
 export async function generateStaticParams() {
     return linguiConfig.locales.map((lang) => ({ lang }))
@@ -20,22 +16,23 @@ export async function generateMetadata(): Promise<Metadata> {
         title: siteConfig.title,
         description: siteConfig.description,
         keywords: siteConfig.keywords,
+        assets: [siteConfig.ogImage],
+        openGraph: {
+            title: siteConfig.title,
+            description: siteConfig.description,
+            url: siteConfig.url,
+            images: [siteConfig.ogImage],
+            type: 'website',
+        },
+        twitter: {
+            title: siteConfig.title,
+            description: siteConfig.description,
+            card: 'summary_large_image',
+            images: [siteConfig.ogImage],
+        },
     }
 }
-export default async function LocaleLayout({ children }: { children: React.ReactNode }) {
-    // Ensure that the incoming `locale` is valid
-    const cookieStore = await cookies()
-    const locale = cookieStore.get('NEXT_LINGUI_LOCALE')?.value || 'en'
 
-    return (
-        <html lang={locale}>
-            <body className="antialiased">
-                <LinguiProvider initialLocale={locale} initialMessages={allMessages[locale]!}>
-                    <ReactQueryProvider>
-                        <LayoutProvider>{children}</LayoutProvider>
-                    </ReactQueryProvider>
-                </LinguiProvider>
-            </body>
-        </html>
-    )
+export default async function AppLayout({ children }: { children: React.ReactNode }) {
+    return <AppProviders>{children}</AppProviders>
 }

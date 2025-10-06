@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import React from 'react'
 
 import { type FCC } from '@/types'
-import { cn } from '@/libs'
+import { cn } from '@/utils'
 
 interface Props {
     duration?: number

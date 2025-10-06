@@ -1,9 +1,9 @@
-import { cn } from '@/libs'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { motion, type MotionProps } from 'framer-motion'
 import { Slot } from '@radix-ui/react-slot'
 import * as React from 'react'
 import useIsMount from '@/hooks/useIsMount'
+import { cn } from '@/utils'
 
 const buttonVariants = cva(
     'inline-flex cursor-pointer items-center justify-center rounded-md font-medium ring-offset-background transition-all duration-[550] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none ',

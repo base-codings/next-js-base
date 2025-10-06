@@ -1,7 +1,7 @@
 import { motion, type MotionProps } from 'framer-motion'
 import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/libs'
+import { cn } from '@/utils'
 
 const hStackVariants = cva('flex flex-wrap items-center', {
     variants: {
