@@ -1,5 +1,5 @@
+import { getCountdownToUCT } from '@/utils'
 import { useState, useEffect } from 'react'
-import { getCountdownToUCT } from '@/libs'
 
 interface Props {
     endTime: string
