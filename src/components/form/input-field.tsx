@@ -1,9 +1,8 @@
 import type { Control, FieldPath, FieldPathValue, FieldValues } from 'react-hook-form'
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
-import { Show } from '../common/show'
-import { Input, InputProps } from '../common'
 import { cn } from '@/utils'
+import { Input, InputProps, Show } from '../ui'
 
 interface Props<T extends FieldValues = FieldValues> extends InputProps {
     control: Control<T>
