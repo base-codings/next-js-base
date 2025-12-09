@@ -1,10 +1,10 @@
-import { LOCALE_KEY } from '@/configs/constant'
 import { ReactQueryProvider } from '@/libs'
 import LayoutProvider from '@/libs/common/LayoutProvider'
 import { LinguiProvider } from '@/libs/providers/LinguiProvider'
 import { allMessages } from '@/translations/appRouterI18n'
 import { cookies } from 'next/headers'
 import { PreloadResources } from './preload-resources'
+import { LOCALE_KEY } from '@/core/constants/common.constant'
 
 export default async function AppProviders({ children }: { children: React.ReactNode }) {
     // Ensure that the incoming `locale` is valid

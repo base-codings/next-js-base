@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
-import { type FCC } from '@/types'
 import { cn } from '@/utils'
+import { FCC } from '@/core/types/common.type'
 
 interface Props {
     duration?: number

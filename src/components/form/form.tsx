@@ -2,8 +2,8 @@ import * as React from 'react'
 import type { ControllerProps, FieldPath, FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form'
 import { Controller, FormProvider, useFormContext } from 'react-hook-form'
 
-import type { FCC } from '@/types'
 import { cn } from '@/utils'
+import { FCC } from '@/core/types/common.type'
 
 export interface FormWrapperProps<T extends FieldValues> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,6 +1,6 @@
 'use client'
 
-import { FCC } from '@/types'
+import { FCC } from '@/core/types/common.type'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { memo, useMemo } from 'react'
 

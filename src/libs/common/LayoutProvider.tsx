@@ -1,6 +1,6 @@
 'use client'
 
-import { FCC } from '@/types'
+import { FCC } from '@/core/types/common.type'
 import { memo } from 'react'
 import { Toaster } from 'sonner'
 

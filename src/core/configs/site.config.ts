@@ -1,4 +1,4 @@
-import { envConfig } from './envConfig'
+import { envConfig } from '@/core/configs/env.config'
 
 export type SiteConfig = typeof siteConfig
 

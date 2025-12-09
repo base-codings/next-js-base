@@ -2,8 +2,8 @@ import '@/assets/fonts/fonts.css'
 import type { Metadata } from 'next'
 import './globals.css'
 import linguiConfig from '../../lingui.config'
-import { siteConfig } from '@/configs/site'
 import AppProviders from './providers'
+import { siteConfig } from '@/core/configs/site.config'
 
 export async function generateStaticParams() {
     return linguiConfig.locales.map((lang) => ({ lang }))
