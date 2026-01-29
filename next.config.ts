@@ -1,5 +1,4 @@
 import { NextConfig } from 'next'
-import linguiConfig from './lingui.config'
 
 const nextConfig: NextConfig = {
     images: {
@@ -7,20 +6,6 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 'pbs.twimg.com',
-                port: '',
-                pathname: '/**',
-                search: '',
-            },
-            {
-                protocol: 'https',
-                hostname: 't.me',
-                port: '',
-                pathname: '/**',
-                search: '',
-            },
-            {
-                protocol: 'https',
-                hostname: 'crypto-token-logos-production.s3.us-west-2.amazonaws.com',
                 port: '',
                 pathname: '/**',
                 search: '',
@@ -34,10 +19,10 @@ const nextConfig: NextConfig = {
     experimental: {
         swcPlugins: [['@lingui/swc-plugin', {}]],
     },
-    i18n: {
-        locales: linguiConfig.locales,
-        defaultLocale: linguiConfig.sourceLocale,
-    },
+    // i18n: {
+    //     locales: linguiConfig.locales,
+    //     defaultLocale: linguiConfig.sourceLocale,
+    // },
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback = {
