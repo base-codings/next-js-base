@@ -89,7 +89,7 @@ All use **Radix UI** primitives from `'radix-ui'` unified package, customized wi
 
 ### DropdownMenu (`@/components/base/dropdown-menu`)
 
-Uses legacy `@radix-ui/react-dropdown-menu` package.
+Uses **Radix UI** `DropdownMenu` primitive from `'radix-ui'` unified package, customized with `cn()`.
 
 ### Container (`@/components/base/container`)
 

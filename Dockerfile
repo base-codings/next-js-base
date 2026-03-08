@@ -33,7 +33,6 @@ RUN mv $ENV_FILE tempenv && rm .env.* && mv tempenv .env
 
 # Build Next.js based on the preferred package manager
 RUN pnpm install --frozen-lockfile
-RUN pnpm add @tanstack/react-query
 RUN pnpm build
 
 ################################################################################################################################

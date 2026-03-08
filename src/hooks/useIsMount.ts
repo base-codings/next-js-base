@@ -12,4 +12,4 @@ const useIsMount = () => {
     return isMount
 }
 
-export default useIsMount
+export { useIsMount }

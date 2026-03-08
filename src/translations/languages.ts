@@ -21,7 +21,7 @@ const languages: Languages[] = [
         rtl: false,
     },
     {
-        locale: 'zl',
+        locale: 'zh',
         name: msg`Chinese`,
         rtl: false,
     },

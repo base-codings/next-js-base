@@ -23,4 +23,4 @@ function Container<T extends ValidElement>({
     return <Component className={cn('mx-auto w-full max-w-[1440px] px-3 md:px-6', className)} {...props} />
 }
 
-export default Container
+export { Container }

@@ -1,5 +1,4 @@
-export * from './useSearchParams'
+export { useIsMount } from './useIsMount'
 export * from './useAsyncEffect'
 export * from './useWindowSize'
 export * from './useCountdown'
-export * from './useIsMount'

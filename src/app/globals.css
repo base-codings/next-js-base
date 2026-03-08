@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 @plugin 'tailwindcss-animate';
 
-@import './custom-class.css';
-
 :root {
     --font-roboto: Roboto, sans-serif;
     --radius: 0.625rem;
@@ -82,12 +80,6 @@
     box-sizing: border-box;
 }
 
-/* ::selection { */
-/* background-color: #ffe4bd; */
-/* background-color: #fc9f49; */
-/* background-color: #fdfdfd; */
-/* } */
-
 body {
     background: var(--background);
     color: var(--foreground);
@@ -96,18 +88,6 @@ body {
 
 img {
     user-select: none;
-}
-
-.bg-button-linear {
-    background-image: var(--button-linear);
-}
-
-.bg-navbar-mobile {
-    background: linear-gradient(92.29deg, #181626 0.4%, #312f43 97.68%);
-}
-
-.bg-black-gradient {
-    background: var(--black-gradient);
 }
 
 .no-scrollbar::-webkit-scrollbar {

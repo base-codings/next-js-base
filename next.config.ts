@@ -23,13 +23,7 @@ const nextConfig: NextConfig = {
     //     locales: linguiConfig.locales,
     //     defaultLocale: linguiConfig.sourceLocale,
     // },
-    webpack: (config, { isServer }) => {
-        if (!isServer) {
-            config.resolve.fallback = {
-                ...config.resolve.fallback,
-                'pino-pretty': false,
-            }
-        }
+    webpack: (config) => {
         config.module.rules.push({
             test: /\.po$/,
             use: {

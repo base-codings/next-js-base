@@ -1,6 +1,6 @@
 import { cn } from '@/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { motion, type MotionProps } from 'framer-motion'
+import { motion, type MotionProps } from 'motion/react'
 import React from 'react'
 
 const vStackVariants = cva('flex flex-col gap-2', {
@@ -48,17 +48,15 @@ const vStackVariants = cva('flex flex-col gap-2', {
 
 export interface VStackProps extends MotionProps, VariantProps<typeof vStackVariants> {
     className?: string
+    ref?: React.Ref<HTMLDivElement>
 }
 
-const VStack = React.forwardRef<HTMLDivElement, VStackProps>(
-    ({ className, spacing, align, justify, children, ...props }, ref) => {
-        return (
-            <motion.div className={cn(vStackVariants({ spacing, align, justify, className }))} ref={ref} {...props}>
-                {children}
-            </motion.div>
-        )
-    },
-)
-VStack.displayName = 'VStack'
+const VStack = ({ className, spacing, align, justify, children, ref, ...props }: VStackProps) => {
+    return (
+        <motion.div className={cn(vStackVariants({ spacing, align, justify, className }))} ref={ref} {...props}>
+            {children}
+        </motion.div>
+    )
+}
 
 export { VStack, vStackVariants }

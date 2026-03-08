@@ -2,7 +2,10 @@ import type { Control, FieldPath, FieldPathValue, FieldValues } from 'react-hook
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
 import { cn } from '@/utils'
-import { Input, InputProps, Show } from '../base'
+import { Input } from '@/components/base/input'
+import { Show } from '@/components/base/show'
+
+type InputProps = React.ComponentProps<'input'>
 
 interface Props<T extends FieldValues = FieldValues> extends InputProps {
     control: Control<T>
@@ -38,13 +41,12 @@ const InputField = <T extends FieldValues>({
                             <Show when={!!label}>
                                 <FormLabel className={labelClassName}>
                                     {label}{' '}
-                                    {required && <span className={cn('text-error-500', requiredClassName)}>*</span>}
+                                    {required && <span className={cn('text-destructive', requiredClassName)}>*</span>}
                                 </FormLabel>
                             </Show>
                             <Input {...field} {...props} className={className} />
 
-                            {/* TODO: NEED FIGMA UPDATE */}
-                            <FormMessage className="text-button-danger mt-1 text-xs" />
+                            <FormMessage className="text-destructive mt-1 text-xs" />
                         </div>
                     </FormControl>
                 </FormItem>

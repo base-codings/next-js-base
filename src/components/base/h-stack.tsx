@@ -1,4 +1,4 @@
-import { motion, type MotionProps } from 'framer-motion'
+import { motion, type MotionProps } from 'motion/react'
 import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/utils'
@@ -50,17 +50,15 @@ const hStackVariants = cva('flex flex-wrap items-center', {
 export interface HStackProps extends MotionProps, VariantProps<typeof hStackVariants> {
     className?: string
     onClick?: React.MouseEventHandler<HTMLDivElement>
+    ref?: React.Ref<HTMLDivElement>
 }
 
-const HStack = React.forwardRef<HTMLDivElement, HStackProps>(
-    ({ className, noWrap, pos, align, spacing, children, ...props }, ref) => {
-        return (
-            <motion.div className={cn(hStackVariants({ spacing, align, className, noWrap, pos }))} ref={ref} {...props}>
-                {children}
-            </motion.div>
-        )
-    },
-)
-HStack.displayName = 'HStack'
+const HStack = ({ className, noWrap, pos, align, spacing, children, ref, ...props }: HStackProps) => {
+    return (
+        <motion.div className={cn(hStackVariants({ spacing, align, className, noWrap, pos }))} ref={ref} {...props}>
+            {children}
+        </motion.div>
+    )
+}
 
 export { HStack, hStackVariants }
