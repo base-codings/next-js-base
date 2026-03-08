@@ -1,5 +1,5 @@
 'use client'
-import { Button } from '@/components/ui'
+import { Button } from '@/components/base/button'
 import { changeLanguage } from '@/utils/helper'
 import { Trans } from '@lingui/react/macro'
 import { FC } from 'react'

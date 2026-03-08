@@ -2,7 +2,7 @@ import type { Control, FieldPath, FieldPathValue, FieldValues } from 'react-hook
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from './form'
 import { cn } from '@/utils'
-import { Input, InputProps, Show } from '../ui'
+import { Input, InputProps, Show } from '../base'
 
 interface Props<T extends FieldValues = FieldValues> extends InputProps {
     control: Control<T>
