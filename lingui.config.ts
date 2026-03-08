@@ -1,6 +1,7 @@
 import { formatter } from '@lingui/format-po'
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from './src/core/constants/common.constant'
 
-const locales = ['en', 'nl', 'zh']
+const locales: string[] = [...SUPPORTED_LOCALES]
 
 if (process.env.NODE_ENV !== 'production') {
     locales.push('pseudo')
@@ -8,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const linguiConfig = {
     locales: locales,
-    sourceLocale: 'en',
+    sourceLocale: DEFAULT_LOCALE,
     pseudoLocale: 'pseudo',
     fallbackLocales: {
         default: 'en',

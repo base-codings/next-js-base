@@ -2,7 +2,7 @@
 
 import { I18nProvider } from '@lingui/react'
 import { type Messages } from '@lingui/core'
-import { useLinguiInit } from '@/translations/pagesRouterI18n'
+import { useLinguiInit } from '@/translations/clientI18n'
 
 type Props = {
     children: React.ReactNode

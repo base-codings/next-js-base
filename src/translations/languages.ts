@@ -1,15 +1,14 @@
 import { MessageDescriptor } from '@lingui/core'
 import { msg } from '@lingui/core/macro'
+import { type SupportedLocale } from '@/core/constants/common.constant'
 
-interface Languages {
-    locale: string
+export interface Language {
+    locale: SupportedLocale | 'pseudo'
     name: MessageDescriptor
     rtl: boolean
 }
 
-export type LOCALES = 'en' | 'nl' | 'zh' | 'pseudo'
-
-const languages: Languages[] = [
+export const languages: Language[] = [
     {
         locale: 'en',
         name: msg`English`,
@@ -34,5 +33,3 @@ if (process.env.NODE_ENV !== 'production') {
         rtl: false,
     })
 }
-
-export default languages
