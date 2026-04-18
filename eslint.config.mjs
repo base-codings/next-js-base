@@ -6,7 +6,17 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-    { ignores: ['src/translations/locales/**/*.js'] },
+    {
+        ignores: [
+            'src/translations/locales/**/*.js',
+            'next-env.d.ts',
+            '.next/**',
+            'public/**',
+            '.claude/**',
+            '.agents/**',
+            'node_modules/**',
+        ],
+    },
     ...compat.config({
         extends: [
             'next',

@@ -32,11 +32,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# package manager
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
 # semantic-release
 .nyc_output
 
@@ -49,22 +44,6 @@ pnpm-lock.yaml
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-
-# flutter
-.dart_tool
-build
-GoogleService-Info.plist
-
-repomix-output.xml
-.serena/cache
-plans/**/*
-!plans/templates/*
-screenshots/*
-docs/screenshots/*
-logs.txt
-test-ck
-__pycache__
 
 # CK meta commands
 prompt.md
