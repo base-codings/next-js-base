@@ -7,8 +7,13 @@ import { DEFAULT_LOCALE, type SupportedLocale } from '@/core/constants/common.co
 const { locales } = linguiConfig
 
 async function loadCatalog(locale: string): Promise<Record<string, Messages>> {
-    const { messages } = await import(`./locales/${locale}/messages.js`)
-    return { [locale]: messages }
+    try {
+        const { messages } = await import(`./locales/${locale}/messages.js`)
+        return { [locale]: messages }
+    } catch (err) {
+        console.error(`[i18n] Failed to load catalog for "${locale}":`, err)
+        return { [locale]: {} }
+    }
 }
 
 const catalogs = await Promise.all(locales.map(loadCatalog))
@@ -33,4 +38,22 @@ export const getI18nInstance = (locale: SupportedLocale): I18n => {
         console.warn(`No i18n instance found for locale "${locale}"`)
     }
     return allI18nInstances[locale]! || allI18nInstances[DEFAULT_LOCALE]!
+}
+
+/**
+ * Safely pick messages for a locale with DEFAULT_LOCALE fallback.
+ * Dev: throws if both missing (forces fix of translation pipeline).
+ * Prod: console.error + returns {} so site stays up (Lingui renders raw IDs).
+ */
+export function pickMessages(locale: string): Messages {
+    const msg = allMessages[locale] ?? allMessages[DEFAULT_LOCALE]
+    if (!msg || Object.keys(msg).length === 0) {
+        const errMsg = `[i18n] No messages for locale "${locale}" or DEFAULT_LOCALE "${DEFAULT_LOCALE}". Run "pnpm translations".`
+        if (process.env.NODE_ENV !== 'production') {
+            throw new Error(errMsg)
+        }
+        console.error(errMsg)
+        return {}
+    }
+    return msg
 }

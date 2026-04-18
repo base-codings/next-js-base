@@ -12,6 +12,5 @@ type Props = {
 
 export function LinguiProvider({ children, initialLocale, initialMessages }: Props) {
     const i18n = useLinguiInit(initialLocale, initialMessages)
-    if (i18n) return <I18nProvider i18n={i18n}>{children}</I18nProvider>
-    return <></>
+    return <I18nProvider i18n={i18n}>{children}</I18nProvider>
 }

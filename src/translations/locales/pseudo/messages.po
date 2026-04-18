@@ -24,3 +24,6 @@ msgstr "Ëñglïsh"
 
 msgid "Pseudo"
 msgstr "Pšëüdö"
+
+msgid "Something went wrong with our system. Please try again!"
+msgstr ""

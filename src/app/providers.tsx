@@ -1,7 +1,7 @@
 import { ReactQueryProvider } from '@/libs'
 import LayoutProvider from '@/libs/common/LayoutProvider'
 import { LinguiProvider } from '@/libs/providers/LinguiProvider'
-import { allMessages } from '@/translations/appRouterI18n'
+import { pickMessages } from '@/translations/appRouterI18n'
 import { languages } from '@/translations/languages'
 import { cookies } from 'next/headers'
 import { PreloadResources } from './preload-resources'
@@ -21,7 +21,7 @@ export default async function AppProviders({ children }: { children: React.React
         <html lang={locale} dir={dir}>
             <PreloadResources />
             <body className="antialiased">
-                <LinguiProvider initialLocale={locale} initialMessages={allMessages[locale]!}>
+                <LinguiProvider initialLocale={locale} initialMessages={pickMessages(locale)}>
                     <ReactQueryProvider>
                         <LayoutProvider>{children}</LayoutProvider>
                     </ReactQueryProvider>
