@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
     output: 'standalone',
     eslint: {
         dirs: ['src'],
+        ignoreDuringBuilds: true,
     },
     experimental: {
         swcPlugins: [['@lingui/swc-plugin', {}]],

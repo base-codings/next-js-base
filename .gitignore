@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+dist/
+bin/
 
 # production
 /build
@@ -30,8 +32,17 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# package manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# semantic-release
+.nyc_output
+
 # env files (can opt-in for committing if needed)
-# .env*
+.env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,6 +50,47 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-certificates
 
-/.vscode
+# flutter
+.dart_tool
+build
+GoogleService-Info.plist
+
+repomix-output.xml
+.serena/cache
+plans/**/*
+!plans/templates/*
+screenshots/*
+docs/screenshots/*
+logs.txt
+test-ck
+__pycache__
+
+# CK meta commands
+prompt.md
+ck.md
+
+# Agent memory (project scope)
+.claude/agent-memory/
+
+# Hook diagnostics logs
+.claude/hooks/.logs/
+
+# Session state (local only, keep .gitkeep)
+.claude/session-state/latest.md
+.claude/session-state/archive/
+
+# Gemini CLI settings (symlink to .claude/.mcp.json)
+.gemini/settings.json
+.claude/settings.bak.json
+# External repos for study/reference
+external/
+
+# Git worktrees (local development only)
+worktrees/
+
+# demo
+.claude/skills/ai-multimodal/assets/demo-*.claude/session-state/*.tmp
+
+.claude
+.agents

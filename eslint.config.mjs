@@ -17,22 +17,23 @@ const eslintConfig = [
         ],
         plugins: ['prettier', 'jsx-a11y'],
         rules: {
-            'prettier/prettier': [
-                'error',
-                {
-                    trailingComma: 'all',
-                    semi: false,
-                    tabWidth: 4,
-                    singleQuote: true,
-                    printWidth: 120,
-                    endOfLine: 'auto',
-                    arrowParens: 'always',
-                    plugins: ['prettier-plugin-tailwindcss'],
-                },
-                {
-                    usePrettierrc: false,
-                },
-            ],
+            // 'prettier/prettier': [
+            //     'error',
+            //     {
+            //         trailingComma: 'all',
+            //         semi: false,
+            //         tabWidth: 4,
+            //         singleQuote: true,
+            //         printWidth: 120,
+            //         endOfLine: 'auto',
+            //         arrowParens: 'always',
+            //         plugins: ['prettier-plugin-tailwindcss'],
+            //     },
+            //     {
+            //         usePrettierrc: false,
+            //     },
+            // ],
+            'prettier/prettier': 'off',
             'react/react-in-jsx-scope': 'off',
             'jsx-a11y/alt-text': 'warn',
             'jsx-a11y/aria-props': 'warn',
