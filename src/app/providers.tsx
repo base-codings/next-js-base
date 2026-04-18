@@ -1,6 +1,7 @@
 import { LayoutProvider } from '@/providers/layout.provider'
 import { LinguiProvider } from '@/providers/lingui.provider'
 import { ReactQueryProvider } from '@/providers/react-query.provider'
+import { ReactScan } from '@/components/dev-tools/react-scan'
 import { pickMessages } from '@/translations/appRouterI18n'
 import { languages } from '@/translations/languages'
 import { cookies } from 'next/headers'
@@ -21,6 +22,7 @@ export default async function AppProviders({ children }: { children: React.React
         <html lang={locale} dir={dir}>
             <PreloadResources />
             <body className="antialiased">
+                <ReactScan />
                 <LinguiProvider initialLocale={locale} initialMessages={pickMessages(locale)}>
                     <ReactQueryProvider>
                         <LayoutProvider>{children}</LayoutProvider>

@@ -66,6 +66,7 @@
         "lint-staged": "^16.1.0",
         "prettier": "^3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.12",
+        "react-scan": "^0.5.3",
         "tailwindcss": "4.1.11",
         "typescript": "^5"
     },

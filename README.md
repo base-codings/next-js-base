@@ -24,23 +24,23 @@ A production-ready Next.js 15 starter template with opinionated architecture, ty
 
 ## Tech Stack
 
-| Layer | Stack |
-|-------|-------|
-| Framework | Next.js 15.5 (App Router) + React 19.2 |
-| Language | TypeScript 5 (strict mode) |
-| Styling | Tailwind CSS v4 + `class-variance-authority` + `tailwind-merge` |
-| UI Primitives | Radix UI + Base UI React |
-| Icons | `lucide-react` |
-| Fonts | Roboto (self-hosted) |
-| i18n | Lingui 5.4 (en, nl, zh — expand as needed) |
-| Server State | TanStack Query v5 |
-| Client State | Zustand v5 |
-| Forms | React Hook Form + Zod + `@hookform/resolvers` |
-| HTTP Client | Axios (with auth interceptor stub) |
-| Animations | `motion` + `tailwindcss-animate` |
-| Toasts | `sonner` |
-| Dates | `dayjs` |
-| Package Manager | pnpm |
+| Layer           | Stack                                                           |
+| --------------- | --------------------------------------------------------------- |
+| Framework       | Next.js 15.5 (App Router) + React 19.2                          |
+| Language        | TypeScript 5 (strict mode)                                      |
+| Styling         | Tailwind CSS v4 + `class-variance-authority` + `tailwind-merge` |
+| UI Primitives   | Radix UI + Base UI React                                        |
+| Icons           | `lucide-react`                                                  |
+| Fonts           | Roboto (self-hosted)                                            |
+| i18n            | Lingui 5.4 (en, nl, zh — expand as needed)                      |
+| Server State    | TanStack Query v5                                               |
+| Client State    | Zustand v5                                                      |
+| Forms           | React Hook Form + Zod + `@hookform/resolvers`                   |
+| HTTP Client     | Axios (with auth interceptor stub)                              |
+| Animations      | `motion` + `tailwindcss-animate`                                |
+| Toasts          | `sonner`                                                        |
+| Dates           | `dayjs`                                                         |
+| Package Manager | pnpm                                                            |
 
 ## Prerequisites
 
@@ -113,17 +113,17 @@ src/
 
 ## Scripts
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm dev` | Start Turbopack dev server (extracts + compiles translations first) |
-| `pnpm build` | Production build with formatting + translations pipeline |
-| `pnpm start` | Run production server |
-| `pnpm lint` | ESLint check |
-| `pnpm lint:fix` | ESLint auto-fix on `./src` |
-| `pnpm format` | Prettier write on entire repo |
-| `pnpm translations:extract` | Extract `<Trans>` + `msg\`\`` usages into PO files |
-| `pnpm translations:compile` | Compile PO files to runtime JS |
-| `pnpm translations` | Extract + compile |
+| Command                     | Purpose                                                             |
+| --------------------------- | ------------------------------------------------------------------- |
+| `pnpm dev`                  | Start Turbopack dev server (extracts + compiles translations first) |
+| `pnpm build`                | Production build with formatting + translations pipeline            |
+| `pnpm start`                | Run production server                                               |
+| `pnpm lint`                 | ESLint check                                                        |
+| `pnpm lint:fix`             | ESLint auto-fix on `./src`                                          |
+| `pnpm format`               | Prettier write on entire repo                                       |
+| `pnpm translations:extract` | Extract `<Trans>` + `msg\`\`` usages into PO files                  |
+| `pnpm translations:compile` | Compile PO files to runtime JS                                      |
+| `pnpm translations`         | Extract + compile                                                   |
 
 ## Internationalization
 
@@ -134,14 +134,14 @@ Supported locales: **en, nl, zh** (configured in `lingui.config.ts` + `src/trans
 1. Add locale code to `lingui.config.ts` (`locales` array) and `src/translations/languages.ts`
 2. Add entry to `SUPPORTED_LOCALES` in `src/core/constants/common.constant.ts`
 3. Run extraction:
-   ```bash
-   pnpm translations:extract
-   ```
+    ```bash
+    pnpm translations:extract
+    ```
 4. Translate the generated `src/translations/locales/{locale}/messages.po`
 5. Compile:
-   ```bash
-   pnpm translations:compile
-   ```
+    ```bash
+    pnpm translations:compile
+    ```
 
 ### Locale Resolution Flow
 
