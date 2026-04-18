@@ -1,6 +1,6 @@
 import '@/assets/fonts/fonts.css'
+import '@/styles/globals.css'
 import type { Metadata } from 'next'
-import './globals.css'
 import linguiConfig from '../../lingui.config'
 import AppProviders from './providers'
 import { siteConfig } from '@/core/configs/site.config'

@@ -1,5 +1,5 @@
-import HomePage from '@/modules/HomePage/HomePage'
+import { HomeModule } from '@/modules/home/home.module'
 
-export default function Home() {
-    return <HomePage />
+export default function Page() {
+    return <HomeModule />
 }

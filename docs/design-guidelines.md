@@ -8,7 +8,7 @@
 - **Variants:** `class-variance-authority` (CVA) — all base components use `cva()` for size/variant
 - **Class merging:** `cn()` = `clsx` + `tailwind-merge`
 - **Styling:** Tailwind CSS v4 + `tailwindcss-animate` plugin
-- **Font:** Inter (self-hosted)
+- **Font:** Roboto (self-hosted, files in `src/assets/fonts/Roboto/`)
 
 ### Base Components (26)
 
@@ -24,6 +24,40 @@ feature/
 ├── feature.ui.tsx        # Pure UI, receives props from script
 └── feature.script.ts     # Hook with business logic
 ```
+
+### Module Pattern (Page-Level)
+
+Page-level containers use `.module.tsx` suffix. Mỗi route trong `app/` có 1 module tương ứng trong `modules/`.
+
+```
+modules/
+└── home/
+    ├── home.module.tsx    # entry, page composition
+    ├── home.ui.tsx        # pure UI
+    ├── home.script.ts     # logic hook
+    ├── components/        # module-local single-file components
+    ├── widgets/           # module-local 3-file widgets
+    ├── hooks/             # module-local hooks
+    └── utils/             # module-local utils
+```
+
+**Module vs Widget:**
+
+- Module = 1 page-level container (1:1 với `app/` route)
+- Widget = reusable UI block (inside module or shared across modules)
+- Nếu dùng ở nhiều modules → promote lên `src/components/shared/`
+
+⚠️ **RULE:** Không đặt `.module.css` (CSS Module file) kế bên `.module.tsx` trong cùng folder. Next.js / Webpack dùng `.module.css` làm CSS Module marker; tooling khác có thể tokenize `.module.` làm split point. Tránh ambiguity bằng cách dùng `styles.css` hoặc prefer Tailwind classes.
+
+### Shared Components
+
+- `src/components/base/` — 26 primitives (Radix/Base UI wraps)
+- `src/components/layout/` — app-level chrome (header, footer)
+- `src/components/shared/` — cross-module reusable widgets (3-file pattern)
+
+### Per-Component Barrel Rule
+
+Each base component folder has a 2-line `index.ts` re-export (e.g., `button/index.ts` → `export * from './button'`). This preserves existing imports `@/components/base/button`. **Do NOT** create a root `components/base/index.ts` barrel — causes circular deps and slow type-checking.
 
 ## Color System
 
@@ -87,14 +121,17 @@ transition-[specific-props] duration-150 ease-out
 
 ## File Sources
 
-| File                          | Purpose                                                           |
-| ----------------------------- | ----------------------------------------------------------------- |
-| `src/styles/globals.css`      | Theme tokens (`@theme inline`), imports                           |
-| `src/styles/themes/light.css` | Light theme raw values                                            |
-| `src/styles/themes/dark.css`  | Dark theme raw values                                             |
-| `src/styles/style.css`        | Global resets, custom button hover CSS, scrollbar, split panes    |
-| `src/styles/reset.css`        | HTML element resets                                               |
-| `src/styles/animations.css`   | Keyframe definitions for sheets                                   |
-| `src/assets/fonts/fonts.css`  | Inter font import                                                 |
-| `src/components/base/`        | All 26 base components (no barrel exports, import by direct path) |
-| `src/utils/generic.ts`        | `cn()` utility for class merging                                  |
+| File                          | Purpose                                                                                 |
+| ----------------------------- | --------------------------------------------------------------------------------------- |
+| `src/styles/globals.css`      | Theme tokens (`@theme inline`), imports                                                 |
+| `src/styles/themes/light.css` | Light theme raw values                                                                  |
+| `src/styles/themes/dark.css`  | Dark theme raw values                                                                   |
+| `src/styles/style.css`        | Global resets, custom button hover CSS, scrollbar, split panes                          |
+| `src/styles/reset.css`        | HTML element resets                                                                     |
+| `src/styles/animations.css`   | Keyframe definitions for sheets                                                         |
+| `src/assets/fonts/fonts.css`  | Roboto font import                                                                      |
+| `src/components/base/`        | 26 base components — per-component `{name}/index.ts` re-export; NO root `base/index.ts` |
+| `src/components/shared/`      | Cross-module reusable widgets (3-file pattern)                                          |
+| `src/providers/`              | Top-level React providers (`*.provider.tsx`)                                            |
+| `src/modules/`                | Page-level modules (1:1 với `app/` routes)                                              |
+| `src/utils/generic.ts`        | `cn()` utility for class merging                                                        |

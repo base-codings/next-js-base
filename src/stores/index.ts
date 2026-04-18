@@ -1,2 +1,1 @@
-import useGlobalStore from './useGlobalStore'
-export { useGlobalStore }
+export { useUIStore, setUIStore } from './ui.store'

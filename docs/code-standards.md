@@ -11,46 +11,52 @@
 ### File Naming Convention
 
 - **TypeScript/JavaScript:** kebab-case with descriptive names
-  - ✅ `adjust-margin.widget.tsx`
-  - ✅ `close-position-desktop.ui.tsx`
-  - ❌ `adjustMargin.tsx` (camelCase not preferred for non-hook files)
+
+    - ✅ `adjust-margin.widget.tsx`
+    - ✅ `close-position-desktop.ui.tsx`
+    - ❌ `adjustMargin.tsx` (camelCase not preferred for non-hook files)
 
 - **Hook files:** camelCase with `use` prefix (exception to kebab-case rule)
-  - ✅ `usePositionsScript.ts`
-  - ✅ `useCombinePositionScript.ts`
-  - ✅ `useWindowSize.tsx`
-  - ❌ `use-combine-positions-script.ts` (kebab-case not allowed for hooks)
-  - ❌ `use-positions-script.ts` (kebab-case not allowed for hooks)
-  - **Exception — Widget `.script.ts` files:** The 3-file widget pattern's `.script.ts` defines the widget's main hook but follows **kebab-case** (matching the widget name), not camelCase. This is because the file is part of the widget identity, not a standalone hook.
-    - ✅ `adjust-margin.script.tsx` → exports `useAdjustMarginScript()`
-    - ✅ `data-list.script.ts` → exports `useDataListScript()`
-    - ❌ `useAdjustMarginScript.ts` (don't rename `.script.ts` to camelCase)
+
+    - ✅ `usePositionsScript.ts`
+    - ✅ `useCombinePositionScript.ts`
+    - ✅ `useWindowSize.tsx`
+    - ❌ `use-combine-positions-script.ts` (kebab-case not allowed for hooks)
+    - ❌ `use-positions-script.ts` (kebab-case not allowed for hooks)
+    - **Exception — Widget `.script.ts` files:** The 3-file widget pattern's `.script.ts` defines the widget's main hook but follows **kebab-case** (matching the widget name), not camelCase. This is because the file is part of the widget identity, not a standalone hook.
+        - ✅ `adjust-margin.script.tsx` → exports `useAdjustMarginScript()`
+        - ✅ `data-list.script.ts` → exports `useDataListScript()`
+        - ❌ `useAdjustMarginScript.ts` (don't rename `.script.ts` to camelCase)
 
 - **Hook file separation:** Hooks must be in dedicated files, not co-located with components
-  - ✅ `hooks/usePositionsScript.ts` + `positions-table.ui.tsx` (separate files)
-  - ✅ `leverage.script.tsx` defining `useLeverageScript()` (widget's main hook in `.script.ts`)
-  - ❌ Defining `usePositionsScript` inside `positions-table.ui.tsx`
-  - **Exception 1:** `useContext` hooks for providers can stay in the provider file (e.g., `usePositionsRow()` inside `positions-row-provider.tsx`)
-  - **Exception 2:** Widget `.script.ts` files can define the widget's main hook (see 3-file pattern below)
+
+    - ✅ `hooks/usePositionsScript.ts` + `positions-table.ui.tsx` (separate files)
+    - ✅ `leverage.script.tsx` defining `useLeverageScript()` (widget's main hook in `.script.ts`)
+    - ❌ Defining `usePositionsScript` inside `positions-table.ui.tsx`
+    - **Exception 1:** `useContext` hooks for providers can stay in the provider file (e.g., `usePositionsRow()` inside `positions-row-provider.tsx`)
+    - **Exception 2:** Widget `.script.ts` files can define the widget's main hook (see 3-file pattern below)
 
 - **CSS/Styling:** Follow Tailwind conventions, use design tokens
-  - All color, spacing, shadow values defined as CSS variables in `src/app/globals.css`
+
+    - All color, spacing, shadow values defined as CSS variables in `src/app/globals.css`
 
 - **SVG Icons:** kebab-case files, PascalCase exports
-  - File: `arrow-right-icon.tsx`
-  - Export: `ArrowRightIcon`
+    - File: `arrow-right-icon.tsx`
+    - Export: `ArrowRightIcon`
 
 ### File Size Management
 
 **Target:** Keep code files under 200 lines
 
 **Strategy for larger features:**
+
 1. Extract utilities into separate `utils.ts`
 2. Extract hooks into separate `hooks/` directory
 3. Split UI into sub-components
 4. Use composition over large monolithic files
 
 **Example: Positions Table**
+
 ```
 positions/
 ├── positions-table.widget.tsx
@@ -70,6 +76,38 @@ positions/
 **Exception:** Markdown files, config files, environment files — size limits don't apply.
 
 ## Component Architecture
+
+### Module Pattern (Page-Level)
+
+Each route in `src/app/` maps 1:1 to a folder in `src/modules/`. Module entry uses `.module.tsx` suffix.
+
+```
+modules/
+└── home/
+    ├── home.module.tsx    # entry — composes .ui + .script
+    ├── home.ui.tsx        # pure UI
+    ├── home.script.ts     # logic hook
+    ├── components/        # module-local single-file components
+    ├── widgets/           # module-local 3-file widgets
+    ├── hooks/             # module-local hooks
+    └── utils/             # module-local utils
+```
+
+**Rules:**
+
+- Module = page-level container (1:1 với route)
+- Widget = reusable UI block (inside module or shared)
+- Shared across modules → promote to `src/components/shared/`
+- NEVER place `.module.css` next to `.module.tsx` (Next.js CSS Modules collision)
+
+**page.tsx consumer:**
+
+```tsx
+import { HomeModule } from '@/modules/home/home.module'
+export default function Page() {
+    return <HomeModule />
+}
+```
 
 ### 3-File Widget Pattern
 
@@ -161,17 +199,18 @@ export const useFeatureScript = (props: FeatureWidgetProps) => {
 
 **When to use `.script.ts` vs `hooks/` folder:**
 
-| Scenario | Approach | Example |
-|----------|----------|---------|
-| Widget needs 1 main hook | `.script.ts` (kebab-case, matches widget name) | `leverage.script.tsx` → `useLeverageScript()` |
-| Widget needs multiple hooks | `hooks/` folder (camelCase per hook) | `orderbook/hooks/useOrderbookScript.ts` + `usePendingOrders.ts` |
-| Auxiliary/shared hooks | Always `hooks/` folder (camelCase) | `hooks/useTabSort.ts`, `hooks/useReversePositionEnabled.ts` |
+| Scenario                    | Approach                                       | Example                                                         |
+| --------------------------- | ---------------------------------------------- | --------------------------------------------------------------- |
+| Widget needs 1 main hook    | `.script.ts` (kebab-case, matches widget name) | `leverage.script.tsx` → `useLeverageScript()`                   |
+| Widget needs multiple hooks | `hooks/` folder (camelCase per hook)           | `orderbook/hooks/useOrderbookScript.ts` + `usePendingOrders.ts` |
+| Auxiliary/shared hooks      | Always `hooks/` folder (camelCase)             | `hooks/useTabSort.ts`, `hooks/useReversePositionEnabled.ts`     |
 
 `.script.ts` = kebab-case (widget identity). `hooks/` = camelCase. Never define hooks inside `.widget.tsx` or `.ui.tsx`.
 
 ### Component Type Annotations
 
 **For components with children:**
+
 ```typescript
 import type { FCC } from '@/core/types'
 
@@ -185,6 +224,7 @@ export const MyComponent: FCC<MyComponentProps> = ({ title, children }) => {
 ```
 
 **For regular components:**
+
 ```typescript
 type MyComponentProps = {
     id: string
@@ -201,6 +241,7 @@ export const MyComponent: React.FC<MyComponentProps> = (props) => {
 ### Type Definitions
 
 **Explicit parameter & return types:**
+
 ```typescript
 // ✅ Correct
 function calculateTotal(items: Order[], rate: number): number {
@@ -214,6 +255,7 @@ function calculateTotal(items, rate) {
 ```
 
 **Use interfaces for object shapes:**
+
 ```typescript
 // ✅ Preferred
 interface Position {
@@ -233,6 +275,7 @@ type Position = {
 ```
 
 **Strict mode enabled:**
+
 ```typescript
 // tsconfig.json
 {
@@ -247,6 +290,7 @@ type Position = {
 ### Error Handling
 
 **Always use try-catch for async operations:**
+
 ```typescript
 export const useSubmitForm = () => {
     const [error, setError] = useState<string | null>(null)
@@ -266,6 +310,7 @@ export const useSubmitForm = () => {
 ```
 
 **Handle API errors consistently:**
+
 ```typescript
 // APIs return IAxiosResponse<T>
 interface IAxiosResponse<T> {
@@ -297,6 +342,7 @@ const handleApiCall = async () => {
 ### Tailwind CSS + Design Tokens
 
 **Use design tokens from `src/app/globals.css`:**
+
 ```css
 /* globals.css defines CSS variables */
 --color-surface-primary-medium
@@ -309,6 +355,7 @@ const handleApiCall = async () => {
 ```
 
 **Apply via Tailwind classes:**
+
 ```typescript
 <div className="bg-surface-primary-medium text-foreground-on-dark p-4 rounded">
     <h1 className="text-lg font-roboto">Title</h1>
@@ -316,6 +363,7 @@ const handleApiCall = async () => {
 ```
 
 **Never use raw colors in components:**
+
 ```typescript
 // ❌ Incorrect (hardcoded colors)
 <div className="bg-blue-500 text-red-800">
@@ -327,6 +375,7 @@ const handleApiCall = async () => {
 ### Class Merging with `cn()`
 
 Use the `cn()` utility for conditional classes and merging:
+
 ```typescript
 import { cn } from '@/utils'
 
@@ -357,6 +406,7 @@ export const Button: React.FC<ButtonProps> = ({ variant = 'primary', disabled })
 ### CVA for Complex Variants
 
 Use Class Variance Authority for intricate component variants:
+
 ```typescript
 import { cva } from 'class-variance-authority'
 
@@ -399,6 +449,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 ### Path Aliases
 
 Use absolute imports with aliases:
+
 ```typescript
 // ✅ Correct (alias)
 import { Button } from '@/components/base/button/button'
@@ -412,10 +463,10 @@ import { cn } from '../../../../utils'
 
 ### Alias Convention
 
-| Alias | Path | Purpose |
-|-------|------|---------|
-| `@/` | `src/` | Absolute root imports |
-| `@orderly.network/*` | External SDK packages | Orderly Network SDK |
+| Alias                | Path                  | Purpose               |
+| -------------------- | --------------------- | --------------------- |
+| `@/`                 | `src/`                | Absolute root imports |
+| `@orderly.network/*` | External SDK packages | Orderly Network SDK   |
 
 ### Import Order (ESLint enforced)
 
@@ -540,6 +591,7 @@ export const setUIStore = (updates: Partial<UIStore>) => {
 ```
 
 **Usage in components:**
+
 ```typescript
 export const MyComponent = () => {
     const { showAllSymbols, setShowAllSymbols } = useUIStore()
@@ -567,15 +619,15 @@ export const MyComponent = () => {
 - Hooks must live in **dedicated files** — not defined inside component files
 - Place in `hooks/` directory within the feature folder
 - **Exception:** `useContext`-based hooks can stay in their provider file
-  ```typescript
-  // ✅ OK — context hook in provider file
-  // providers/positions-row-provider.tsx
-  export const usePositionsRow = () => {
-      const ctx = useContext(PositionsRowContext)
-      if (!ctx) throw new Error('...')
-      return ctx
-  }
-  ```
+    ```typescript
+    // ✅ OK — context hook in provider file
+    // providers/positions-row-provider.tsx
+    export const usePositionsRow = () => {
+        const ctx = useContext(PositionsRowContext)
+        if (!ctx) throw new Error('...')
+        return ctx
+    }
+    ```
 
 ### Hook Pattern for Complex Logic
 
@@ -586,6 +638,7 @@ Combine state, queries, mutations, and callbacks in a single custom hook. Return
 Use `useForm()` with type-safe `control` and `handleSubmit`. Always validate inputs with Zod schemas.
 
 **Pattern:**
+
 ```typescript
 const { control, handleSubmit } = useForm({
     resolver: zodResolver(schema),
@@ -604,18 +657,21 @@ return <form onSubmit={onSubmit}>{/* fields */}</form>
 Wrap translatable strings with `<Trans>` (JSX) or `msg()` (non-JSX).
 
 **JSX:**
+
 ```typescript
 import { Trans } from '@lingui/react/macro'
 <Trans>Translatable string</Trans>
 ```
 
 **Non-JSX:**
+
 ```typescript
 import { msg } from '@lingui/core/macro'
 const text = msg`Translatable string`
 ```
 
 After updates, run:
+
 ```bash
 pnpm translations:extract && pnpm translations:compile
 ```
@@ -627,6 +683,7 @@ Supported locales: en, de, es, ru, fr, ja, ko, nl, vi, uk, zh (11 total)
 ### `'use client'` Directive
 
 Add `'use client'` to components that use:
+
 - React hooks (`useState`, `useEffect`, `useContext`)
 - Event handlers (`onClick`, `onChange`)
 - Browser APIs (`localStorage`, `window`)
@@ -663,8 +720,12 @@ import { Component, ReactNode } from 'react'
 
 export class ErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }> {
     state = { hasError: false }
-    static getDerivedStateFromError() { return { hasError: true } }
-    render() { return this.state.hasError ? this.props.fallback : this.props.children }
+    static getDerivedStateFromError() {
+        return { hasError: true }
+    }
+    render() {
+        return this.state.hasError ? this.props.fallback : this.props.children
+    }
 }
 ```
 
@@ -686,6 +747,7 @@ Test utilities and pure functions with comprehensive coverage including edge cas
 **Tools:** Jest + @testing-library/utils
 
 **Pattern:**
+
 ```typescript
 describe('formatNumber', () => {
     it('formats with 2 decimal places', () => {
@@ -703,6 +765,7 @@ describe('formatNumber', () => {
 Test user interactions, rendering, and props using `@testing-library/react` and `jest`.
 
 **Pattern:**
+
 ```typescript
 import { render, screen, userEvent } from '@testing-library/react'
 
@@ -710,7 +773,7 @@ describe('Button', () => {
     it('calls onClick when clicked', async () => {
         const onClick = jest.fn()
         render(<Button onClick={onClick}>Click me</Button>)
-        
+
         await userEvent.click(screen.getByRole('button'))
         expect(onClick).toHaveBeenCalled()
     })
@@ -779,11 +842,11 @@ Before committing code:
 
 ## Common Patterns & Anti-Patterns
 
-| Pattern | Usage |
-|---------|-------|
-| **Responsive Component** | Use `useWindowSize()` for md: 768px breakpoint |
-| **Context for State** | React Context for positions, rows, symbols with custom hooks |
-| **⚠️ No barrel exports in `base/`** | Direct imports only (circular deps, slow type-checking) |
+| Pattern                             | Usage                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
+| **Responsive Component**            | Use `useWindowSize()` for md: 768px breakpoint               |
+| **Context for State**               | React Context for positions, rows, symbols with custom hooks |
+| **⚠️ No barrel exports in `base/`** | Direct imports only (circular deps, slow type-checking)      |
 
 ---
 
